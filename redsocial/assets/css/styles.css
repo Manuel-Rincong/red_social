@@ -1,0 +1,149 @@
+/* 1. BASE Y RESETEO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, sans-serif; 
+}
+
+body {
+    background-color: #FFFFFF;
+    color: #000000; 
+    line-height: 1.6;
+}
+header {
+    background-color: #8b0000;
+    padding: 10px 30px;
+    display: flex;                /* 1. Pone título y menú en la misma fila */
+    justify-content: space-between; /* 2. Título a la izquierda, Menú a la derecha */
+    align-items: center;          /* 3. Centra todo verticalmente */
+}
+
+h1 {
+    color: #ffffff !important;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    display: flex;                /* Mantiene el logo pegado al texto */
+    align-items: center;
+    margin: 0;
+}
+
+.logo-header {
+    width: 60px;
+    height: auto;
+    margin-left: 20px;            /* Espacio entre texto y logo */
+}
+
+nav {
+    display: flex;                /* Alinea los botones en fila */
+}
+
+nav a {
+    color: #000000;            
+    background-color: #ffffff; 
+    text-decoration: none;
+    margin: 0 10px;            
+    font-weight: bold;         
+    text-transform: uppercase;
+    padding: 8px 15px;         
+    display: inline-block;    
+    border-radius: 3px;     
+    border: none;
+    border-right: 2px solid #000000;
+}
+
+nav a:hover {
+    color: #8b0000;            
+    text-decoration: none;     
+    background-color: #eeeeee; 
+}
+
+
+section, main {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #DDDDDD;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #8b0000; 
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    border-left: 5px solid #FF0000; 
+    padding-left: 10px;
+}
+
+/* 5. ESTILO PARA EL BLOG Y FOROS */
+.entrada-blog, .post-blog {
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-left: 5px solid #8b0000; 
+    padding: 20px;
+    margin-bottom: 25px;
+    border-radius: 0 8px 8px 0;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #000000;
+}
+
+
+button, .btn-blog {
+    background-color: #8b0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover, .btn-blog:hover {
+    background-color: #000000; 
+}
+
+.btn-volver {
+    display: inline-block;
+    background-color: #ffffff ;
+    color: #000000 ;
+    padding: 10px 25px;
+    border: 2px solid #000000;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.btn-volver:hover {
+    background-color: #000000 ;
+    color: #ffffff ;
+}
+
+/* 8. PREGUNTAS frecuentes */
+div.pregunta-faq, .pregunta-faq {
+    background-color: #f4f4f4 !important;
+    color: #000000 !important;
+    padding: 12px !important;
+    font-weight: 900 !important;
+    border-left: 5px solid #8b0000 !important;
+    margin-top: 20px !important;
+    display: block !important;
+    font-size: 1.1rem !important;
+}
+
+div.respuesta-faq, .respuesta-faq {
+    background-color: transparent !important;
+    color: #555555 !important;
+    padding: 10px 20px !important;
+    font-weight: normal !important;
+    border-left: none !important;
+    display: block !important;
+    margin-bottom: 15px !important;
+}
