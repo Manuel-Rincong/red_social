@@ -1,0 +1,255 @@
+/* Reset General */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', Arial, sans-serif;
+}
+
+body {
+    background-color: #f8f9fa;
+    color: #000000;
+    padding-bottom: 50px;
+}
+/* BARRA DE NAVEGACIÓN SUPERIOR (CORREGIDA)*/
+.navbar {
+    background-color: #e52427;
+    padding: 18px 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* CONTENEDOR DE BLOQUES */
+
+.app-main-content {
+    max-width: 1100px;
+    margin: 40px auto 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Cajas contenedoras de Figma (Estilo Blanco y Cuadrado) */
+.profile-card, .info-block, .profile-activity {
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
+    padding: 35px;
+    border-radius: 4px; /* Bordes casi rectos como tu diseño */
+}
+
+/*BLOQUE 1: CABECERA DE PERFIL */
+
+.profile-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    position: relative;
+    border-bottom: 1px solid #f0f0f0;
+    padding-bottom: 25px;
+    margin-bottom: 20px;
+}
+
+/* El cuadro azul MG de tu Figma */
+.profile-avatar {
+    background-color: #00bfff;
+    color: white;
+    width: 110px;
+    height: 110px;
+    border-radius: 4px; /* Cuadrado con puntas apenas curvas */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+.profile-user-info {
+    flex: 1;
+}
+
+.user-name {
+    font-size: 1.7rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.user-email, .user-phone {
+    color: #666666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+/* Botón Editar Perfil (Blanco con borde negro a la derecha) */
+.profile-header .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 8px 20px;
+    font-weight: normal;
+}
+
+.profile-header .btn:hover {
+    background: #f0f0f0;
+}
+
+/* Biografía */
+.info-field strong {
+    display: block;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.info-field p {
+    color: #555555;
+    font-size: 0.9rem;
+}
+
+/* BLOQUE 2: COLUMNAS EN PARALELO  */
+
+.profile-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas simétricas exactas */
+    gap: 30px;
+}
+
+.profile-details h2, .profile-activity h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* Inputs grises de Información Personal */
+
+.profile-details .info-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 15px;
+    border-bottom: none;
+    padding: 0;
+}
+
+.profile-details .field-label {
+    font-size: 0.85rem;
+    color: #555555;
+}
+
+.profile-details .field-value {
+    background-color: #f4f4f4;
+    border: 1px solid #e0e0e0;
+    padding: 10px 12px;
+    font-size: 0.95rem;
+    color: #000000;
+    border-radius: 4px;
+    font-weight: normal;
+}
+
+/* Configuración de Cuenta y Switches Negros */
+
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.setting-row:last-of-type {
+    margin-bottom: 25px;
+}
+
+/* El interruptor negro idéntico al diseño */
+
+.setting-row::after {
+    content: '';
+    display: block;
+    width: 42px;
+    height: 22px;
+    background-color: #222222;
+    border: 2px solid #222222;
+    position: relative;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+/* El marcador blanco dentro del switch a la derecha */
+
+.setting-row::before {
+    content: '';
+    position: absolute;
+    right: 58px; /* Ajuste manual según herencia flex */
+    width: 14px;
+    height: 14px;
+    background-color: #ffffff;
+    z-index: 5;
+    display: none; /* Estático como el wireframe */
+}
+
+/* Enlace Cambiar Contraseña */
+.btn-secondary {
+    background: transparent;
+    color: #555555;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-align: left;
+    cursor: pointer;
+}
+
+
+/*   BLOQUE 3: ACTIVIDAD RECIENTE */
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.9rem;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-item .field-label {
+    color: #999999;
+    font-size: 0.85rem;
+}
