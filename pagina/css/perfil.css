@@ -1,4 +1,3 @@
-/* Reset General */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +10,7 @@ body {
     color: #000000;
     padding-bottom: 50px;
 }
-/* BARRA DE NAVEGACIÓN SUPERIOR (CORREGIDA)*/
+
 .navbar {
     background-color: #e52427;
     padding: 18px 40px;
@@ -51,8 +50,6 @@ body {
     justify-content: center;
 }
 
-/* CONTENEDOR DE BLOQUES */
-
 .app-main-content {
     max-width: 1100px;
     margin: 40px auto 0 auto;
@@ -62,15 +59,14 @@ body {
     gap: 30px;
 }
 
-/* Cajas contenedoras de Figma (Estilo Blanco y Cuadrado) */
-.profile-card, .info-block, .profile-activity {
+.profile-card, 
+.info-block, 
+.profile-activity {
     background: #ffffff;
     border: 1px solid #e0e0e0;
     padding: 35px;
-    border-radius: 4px; /* Bordes casi rectos como tu diseño */
+    border-radius: 4px;
 }
-
-/*BLOQUE 1: CABECERA DE PERFIL */
 
 .profile-header {
     display: flex;
@@ -82,13 +78,12 @@ body {
     margin-bottom: 20px;
 }
 
-/* El cuadro azul MG de tu Figma */
 .profile-avatar {
     background-color: #00bfff;
     color: white;
     width: 110px;
     height: 110px;
-    border-radius: 4px; /* Cuadrado con puntas apenas curvas */
+    border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,13 +101,13 @@ body {
     margin-bottom: 6px;
 }
 
-.user-email, .user-phone {
+.user-email, 
+.user-phone {
     color: #666666;
     font-size: 0.9rem;
     margin-bottom: 5px;
 }
 
-/* Botón Editar Perfil (Blanco con borde negro a la derecha) */
 .profile-header .btn {
     position: absolute;
     top: 0;
@@ -128,7 +123,6 @@ body {
     background: #f0f0f0;
 }
 
-/* Biografía */
 .info-field strong {
     display: block;
     font-size: 0.95rem;
@@ -140,21 +134,18 @@ body {
     font-size: 0.9rem;
 }
 
-/* BLOQUE 2: COLUMNAS EN PARALELO  */
-
 .profile-details {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas simétricas exactas */
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
 }
 
-.profile-details h2, .profile-activity h2 {
+.profile-details h2, 
+.profile-activity h2 {
     font-size: 1.15rem;
     font-weight: 600;
     margin-bottom: 25px;
 }
-
-/* Inputs grises de Información Personal */
 
 .profile-details .info-field {
     display: flex;
@@ -180,8 +171,6 @@ body {
     font-weight: normal;
 }
 
-/* Configuración de Cuenta y Switches Negros */
-
 .setting-row {
     display: flex;
     justify-content: space-between;
@@ -193,8 +182,6 @@ body {
 .setting-row:last-of-type {
     margin-bottom: 25px;
 }
-
-/* El interruptor negro idéntico al diseño */
 
 .setting-row::after {
     content: '';
@@ -208,20 +195,27 @@ body {
     cursor: pointer;
 }
 
-/* El marcador blanco dentro del switch a la derecha */
-
-.setting-row::before {
-    content: '';
-    position: absolute;
-    right: 58px; /* Ajuste manual según herencia flex */
-    width: 14px;
-    height: 14px;
-    background-color: #ffffff;
-    z-index: 5;
-    display: none; /* Estático como el wireframe */
+.setting-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-/* Enlace Cambiar Contraseña */
+.setting-title {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #000000;
+}
+
+.setting-desc {
+    color: #666666;
+    font-size: 0.85rem;
+}
+
+.password-container {
+    margin-top: 25px;
+}
+
 .btn-secondary {
     background: transparent;
     color: #555555;
@@ -234,8 +228,6 @@ body {
     cursor: pointer;
 }
 
-
-/*   BLOQUE 3: ACTIVIDAD RECIENTE */
 .activity-item {
     display: flex;
     justify-content: space-between;

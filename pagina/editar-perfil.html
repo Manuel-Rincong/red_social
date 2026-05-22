@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <title>LIBRE CONECT - Editar Perfil</title>
+    <link rel="stylesheet" href="css/perfil.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">LIBRE CONECT</div>
+        <nav class="nav-links">
+            <a href="home.html">Inicio</a>
+            <a href="social.html">Red Social</a>
+            <a href="noticias.html">Noticias</a>
+            <a href="#">FAQ</a>
+            <a href="noticias.html" class="icon-btn">🔍</a>
+            <a href="perfil.html" class="icon-btn">👤</a>
+        </nav>
+    </header>
+
+    <main class="app-main-content">
+        <section class="profile-section">
+            
+            <div class="profile-card">
+                <h2>Editar Información Personal</h2>
+                
+                <form action="perfil.html" onsubmit="alert('SE GUARDARON CORRECTAMENTE');">
+                    
+                    <div class="profile-details">
+                        
+                        <div class="info-field">
+                            <span class="field-label">Nombre completo</span>
+                            <input type="text" class="field-value" value="María González" name="nombre">
+                        </div>
+                        
+                        <div class="info-field">
+                            <span class="field-label">Correo electrónico</span>
+                            <input type="email" class="field-value" value="maria.gonzalez@unilibre.edu.co" name="correo">
+                        </div>
+                        
+                        <div class="info-field">
+                            <span class="field-label">Teléfono</span>
+                            <input type="text" class="field-value" value="+34 612 345 678" name="telefono">
+                        </div>
+
+                        <div class="info-field">
+                            <span class="field-label">Biografía</span>
+                            <textarea class="field-value" rows="4" name="biografia">Estudiante de ingeniería en sistemas.</textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="password-container">
+                        <button type="submit" class="field-value">Guardar cambios</button>
+                        <a href="perfil.html" class="btn-secondary">Cancelar</a>
+                    </div>
+
+                </form>
+            </div>
+
+        </section>
+    </main>
+
+</body>
+</html>
