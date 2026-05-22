@@ -1,21 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>perfil</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <title>LIBRE CONECT - Perfil</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="navbar">
+        <header class="navbar">
         <div class="logo">LIBRE CONECT</div>
         <nav class="nav-links">
             <a href="home.html">Inicio</a>
             <a href="social.html">Red Social</a>
-            <a href="#">Noticias</a>
+            <a href="noticias.html">Noticias</a>
             <a href="#">FAQ</a>
             <button class="icon-btn">🔍</button>
-            <button class="icon-btn">👤</button>
+            <a href="perfil.html" class="icon-btn">👤</a>
         </nav>
-    </div>
+    </header>
+    <main class="app-main-content">
+        
+        <section id="perfil" class="profile-section">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">MG</div>
+                    <div class="profile-user-info">
+                        <h1 class="user-name">María González</h1>
+                        <p class="user-email">maria.gonzalez@unilibre.edu.co</p>
+                        <p class="user-phone">+34 612 345 678</p>
+                    </div>
+                    <button class="btn">Editar perfil</button>
+                </div>
+
+                <div class="info-field" style="margin-top: 15px;">
+                    <strong>Biografía</strong>
+                    <p style="margin-top: 5px;">Estudiante de ingeniería en sistemas.</p>
+                </div>
+            </div>
+
+            <div class="profile-details">
+                <div class="info-block">
+                    <h2>Información personal</h2>
+                    <div class="info-field">
+                        <span class="field-label">Nombre completo</span>
+                        <span class="field-value">María González</span>
+                    </div>
+                    <div class="info-field">
+                        <span class="field-label">Correo electrónico</span>
+                        <span class="field-value">maria.gonzalez@unilibre.edu.co</span>
+                    </div>
+                    <div class="info-field">
+                        <span class="field-label">Teléfono</span>
+                        <span class="field-value">+34 612 345 678</span>
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <h2>Configuración de cuenta</h2>
+                    <div class="setting-row">
+                        <div>
+                            <span class="field-value">Notificaciones por correo electrónico</span><br>
+                            <span class="field-label">Recibe actualizaciones</span>
+                        </div>
+                    </div>
+                    <div class="setting-row">
+                        <div>
+                            <span class="field-value">Perfil público</span><br>
+                            <span class="field-label">Visible para otros usuarios</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary">Cambiar contraseña</button>
+                </div>
+            </div>
+
+            <div class="profile-activity">
+                <h2>Actividad reciente</h2>
+                <div class="activity-item">
+                    <span>Actualizaste tu perfil</span>
+                    <span class="field-label">Hace 2 horas</span>
+                </div>
+                <div class="activity-item">
+                    <span>Cambiaste tu contraseña</span>
+                    <span class="field-label">Hace 3 días</span>
+                </div>
+                <div class="activity-item">
+                    <span>Iniciaste sesión desde un nuevo dispositivo</span>
+                    <span class="field-label">Hace 1 semana</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
 </body>
 </html>
