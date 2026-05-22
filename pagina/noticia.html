@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Noticia - LIBRE CONECT</title>
+    <link rel="stylesheet" href="css/noticias.css">
+    <style>
+        .noticia-full { max-width: 800px; margin: 40px auto; padding: 20px; }
+        .noticia-full img { width: 100%; border-radius: 12px; margin-bottom: 20px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #ed3c3c; text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">LIBRE CONECT</div>
+        <nav class="nav-links">
+            <a href="home.html">Inicio</a>
+            <a href="social.html">Red Social</a>
+            <a href="#">Noticias</a>
+            <a href="#">FAQ</a>
+            <button class="icon-btn">🔍</button>
+            <button class="icon-btn">👤</button>
+        </nav>
+    </div>
+
+    <main class="noticia-full">
+        <a href="noticias.html" class="back-link">← Volver a Noticias</a>
+        <h1 id="titulo">Cargando...</h1>
+        <p><small id="fecha"></small></p>
+        <img id="imagen" src="" alt="Noticia">
+        <div id="cuerpo" style="line-height: 1.6; margin-top: 20px;"></div>
+
+
+    </main>
+    <section id="comments-section" style="margin-top: 40px;">
+        <h3>Comentarios</h3>
+        <textarea id="comment-text" placeholder="Escribe algo..." style="width:100%; height:80px;"></textarea>
+        <button onclick="agregarComentario()">Publicar</button>
+        
+        <div id="comments-list" style="margin-top: 20px;"></div>
+    </section>
+    <script>
+        const noticias = {
+            "1": { titulo: "Cambio de horario en exámenes finales", fecha: "8 de Abril, 2026", img: "imagenes_noticias/imagen1.png", texto: "Debido a condiciones climáticas imprevistas que han afectado la infraestructura de varios bloques académicos, el Consejo Universitario ha determinado la necesidad urgente de reprogramar el calendario de exámenes finales. Esta medida busca garantizar la seguridad y el bienestar de toda nuestra comunidad, asegurando que nadie se vea impedido de presentar sus evaluaciones por factores externos.\nLa nueva distribución de fechas ha sido diseñada para minimizar el impacto en el cierre del ciclo académico. Entendemos que este cambio puede generar incertidumbre, por lo que hemos trabajado intensamente para que los ajustes sean lo menos disruptivos posible. El compromiso de la universidad es mantener la calidad académica sin sacrificar la equidad para los estudiantes.\nInvitamos a todos los estudiantes a verificar su nuevo cronograma a través del portal estudiantil a partir de las 8:00 a.m. de mañana. Es indispensable que cada alumno revise su perfil personal, ya que los cambios se han realizado de manera individualizada dependiendo de las materias inscritas. No se realizarán cambios adicionales a menos que se presenten cruces de horarios debidamente certificados.\nEs vital que los estudiantes se presenten con al menos 15 minutos de antelación en sus salones asignados. La puntualidad será estrictamente controlada para permitir que el proceso de evaluación transcurra de manera organizada. Recordamos que no se permitirá el ingreso al aula una vez transcurridos los primeros 10 minutos de la prueba.\nEn cuanto a las justificaciones, la Oficina de Registro Académico ha habilitado una línea de atención prioritaria para aquellos estudiantes que tengan compromisos laborales o viajes ineludibles programados con anterioridad. Deberán presentar los soportes correspondientes en un plazo máximo de 48 horas. La universidad se compromete a evaluar cada caso de manera humana y responsable.\nFinalmente, agradecemos de antemano su comprensión y paciencia ante esta situación excepcional. Estas medidas, aunque incómodas, son necesarias para preservar la integridad de nuestro proceso evaluativo. Estamos trabajando para que el cierre de este semestre sea exitoso para todos nuestros futuros profesionales." },
+            "2": { titulo: "Feria de Emprendimiento 2026", fecha: "10 de Mayo, 2026", img: "imagenes_noticias/imagen2.png", texto: "¡Llega nuestra feria anual de emprendimiento! Este evento se ha consolidado como el punto de encuentro más importante para los jóvenes innovadores de nuestra universidad, donde las ideas se transforman en realidades tangibles y proyectos con impacto real en la sociedad. Este año, esperamos una participación récord de más de 50 proyectos de diversos sectores.\nEstudiantes de todas las facultades, desde ingeniería hasta artes visuales, tendrán la oportunidad de presentar sus propuestas ante un jurado compuesto por destacados empresarios, inversores y académicos. El objetivo central no es solo la competencia, sino la creación de un ecosistema donde los estudiantes puedan recibir retroalimentación profesional sobre sus modelos de negocio.\nDurante la feria, contaremos con una zona de stands donde cada grupo podrá exhibir sus prototipos, realizar demostraciones en vivo y explicar sus planes de marketing. Este es el espacio perfecto para demostrar que la creatividad universitaria no tiene límites cuando se combina con la formación técnica adecuada.\nAdemás de las exhibiciones, hemos preparado una agenda de charlas magistrales con expertos del sector empresarial. Ellos compartirán sus experiencias, errores aprendidos y consejos para escalar proyectos desde una idea universitaria hasta una empresa sostenible. Será una oportunidad invaluable de networking para todos los asistentes.\nQueremos resaltar que, en esta edición 2026, estamos premiando especialmente la sostenibilidad y la responsabilidad social. Los proyectos que presenten un enfoque claro hacia la resolución de problemas ambientales o el apoyo a comunidades vulnerables tendrán una categoría especial de reconocimiento. Queremos fomentar una mentalidad empresarial con conciencia ética.\nLa premiación final se llevará a cabo al cierre del segundo día de actividades. Se entregarán becas de aceleración, mentorías personalizadas con incubadoras de empresas aliadas y capital semilla para los tres proyectos más destacados. Invitamos a toda la comunidad a apoyar a sus compañeros y disfrutar de la muestra de talento que tendremos este año." },
+            "3": { titulo: "Nuevas becas disponibles", fecha: "12 de Mayo, 2026", img: "imagenes_noticias/imagen3.png", texto: "La oficina de Bienestar Universitario se complace en anunciar la apertura de la convocatoria para el nuevo programa de becas académicas y de manutención, correspondiente al segundo semestre del presente año. Nuestro firme propósito es garantizar que la excelencia académica y el talento no se vean limitados por factores económicos.\nEsta convocatoria es una respuesta directa al aumento de la demanda de apoyos financieros por parte de nuestra comunidad estudiantil. La universidad ha realizado un esfuerzo presupuestario significativo para ampliar la cobertura, permitiendo que un mayor número de estudiantes brillantes puedan continuar con su formación profesional sin interrupciones.\nLas becas están divididas en tres categorías principales: excelencia académica, apoyo socioeconómico y becas por representación deportiva o artística. Cada una de ellas tiene sus propios requisitos específicos, los cuales han sido publicados en nuestra plataforma oficial. Es fundamental que los aspirantes lean con detenimiento los términos y condiciones.\nPara postularse, los interesados deben completar el formulario en línea que estará habilitado hasta el próximo 30 de mayo. Este formulario requiere el cargue de documentos probatorios, por lo que recomendamos empezar la recopilación de los mismos con antelación. No se recibirán solicitudes incompletas ni enviadas fuera del plazo establecido.\nUna vez finalizada la etapa de inscripción, un comité de expertos realizará una evaluación técnica y socioeconómica rigurosa de cada perfil. El proceso de selección es transparente y busca premiar el mérito y la necesidad, asegurando que los recursos lleguen a quienes más los requieren para cumplir su sueño académico.\nInvitamos a los estudiantes a no desaprovechar esta oportunidad. El equipo de Bienestar Universitario estará ofreciendo asesorías personalizadas en el edificio administrativo durante la próxima semana para resolver cualquier duda sobre el proceso de postulación. Su futuro académico es nuestra principal prioridad." },
+            "4": { titulo: "Nueva biblioteca digital inaugurada", fecha: "15 de Mayo, 2026", img: "imagenes_noticias/imagen4.png", texto: "Con gran orgullo, anunciamos la inauguración de nuestra nueva biblioteca digital, una herramienta revolucionaria diseñada para transformar la manera en que nuestra comunidad accede al conocimiento. A partir de hoy, la barrera del espacio y el tiempo desaparece para dar paso a un aprendizaje sin límites, disponible para todos las 24 horas del día.\nEsta plataforma ha sido desarrollada con tecnología de vanguardia para ofrecer una experiencia de usuario fluida, intuitiva y sumamente rápida. Hemos trabajado de la mano con proveedores globales para curar una colección de recursos que incluye las bases de datos más prestigiosas del mundo, revistas indexadas y una vasta colección de libros electrónicos.\nLa biblioteca digital está diseñada para ser un apoyo fundamental en sus procesos de investigación y estudio. Ya sea que necesiten consultar artículos científicos de alto impacto para una tesis, o buscar bibliografía especializada para una clase, nuestro sistema inteligente les permitirá encontrar lo que buscan en cuestión de segundos.\nUna de las mayores ventajas de esta nueva infraestructura es su acceso remoto universal. No importa si están en el campus, en casa o de viaje; siempre y cuando cuenten con sus credenciales institucionales, tendrán acceso total a todo nuestro catálogo. Esto garantiza que la investigación no se detenga sin importar las circunstancias externas.\nAdemás, hemos integrado herramientas de gestión de citas bibliográficas y lectores de archivos en formato adaptable, facilitando enormemente la lectura desde dispositivos móviles, tablets o computadoras. Queremos que la biblioteca se convierta en su compañera diaria, optimizando su tiempo y mejorando la calidad de sus entregas académicas.\nLes invitamos a explorar la plataforma esta misma tarde y realizar su primera búsqueda. Para facilitar la transición, hemos organizado una serie de webinars introductorios que se llevarán a cabo la próxima semana, donde expertos bibliotecarios les enseñarán todos los trucos para maximizar el uso de esta poderosa herramienta tecnológica." },
+            "5": { titulo: "Semana Cultural", fecha: "20 de Mayo, 2026", img: "imagenes_noticias/imagen5.png", texto: "¡Prepárense para vivir una experiencia inolvidable! Anunciamos oficialmente la llegada de nuestra Semana Cultural 2026, una celebración diseñada para honrar la diversidad, el talento y la energía creativa que caracteriza a nuestra comunidad universitaria. Durante siete días, el campus se transformará en un escenario vibrante de actividades.\nLa agenda está repleta de propuestas para todos los gustos. Desde las tradicionales exposiciones de artes plásticas hasta presentaciones de teatro experimental, pasando por conciertos de bandas emergentes y presentaciones de danza contemporánea. Cada rincón de la universidad vibrará con una propuesta artística diferente.\nEl deporte también será protagonista durante esta semana. Se llevarán a cabo torneos relámpago de fútbol, baloncesto y voleibol, promoviendo la integración entre facultades y el sano esparcimiento. Es la ocasión perfecta para demostrar el espíritu de compañerismo y competitividad que nos une más allá de los salones de clase.\nNo podemos olvidar nuestro famoso concurso gastronómico, donde representantes de diferentes regiones compartirán los platos típicos que definen nuestra cultura. Será un deleite para los sentidos y una oportunidad excelente para conocer un poco más sobre las raíces y tradiciones de nuestros compañeros de otras partes del país.\nComo evento central, tendremos una noche de gala el jueves, donde se premiarán los talentos destacados de la semana. Esta velada contará con invitados especiales, incluyendo artistas locales que han trascendido en la escena nacional. Es un espacio para celebrar nuestra identidad y el sentido de pertenencia a esta institución.\nQueremos hacer énfasis en que todas las actividades son de entrada gratuita para estudiantes, docentes y administrativos. El objetivo es que nadie se quede por fuera de esta fiesta universitaria. Los invitamos a revisar la programación completa en nuestro sitio web y a participar activamente, porque la universidad la hacemos todos nosotros." }
+        };
+
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        if (noticias[id]) {
+            document.getElementById('titulo').innerText = noticias[id].titulo;
+            document.getElementById('fecha').innerText = noticias[id].fecha;
+            document.getElementById('imagen').src = noticias[id].img;
+            document.getElementById('cuerpo').innerText = noticias[id].texto;
+        } else {
+            document.getElementById('titulo').innerText = "Noticia no encontrada";
+        }
+    </script>
+
+    <script>
+    const params_comentarios = new URLSearchParams(window.location.search);
+    const id_comentarios = params_comentarios.get('id');
+
+    function mostrarComentarios() {
+        const list = document.getElementById('comments-list');
+
+        const storageKey = 'comentarios_' + id_comentarios;
+        const comentarios = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        
+        list.innerHTML = comentarios.map(c => 
+            `<div class="comentario-card">
+            <p>${c}</p>
+        </div>`
+        ).join('');
+    }
+
+   function agregarComentario() {
+        const input = document.getElementById('comment-text');
+        const text = input.value.trim();
+        if (text === "") return;
+
+        const storageKey = 'comentarios_' + id;
+        let comentarios = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        
+        // CAMBIO: unshift coloca el nuevo elemento al inicio del array
+        comentarios.unshift(text); 
+        
+        localStorage.setItem(storageKey, JSON.stringify(comentarios));
+
+        input.value = "";
+        mostrarComentarios();
+    }
+
+        mostrarComentarios();
+    </script>
+</body>
+</html>
