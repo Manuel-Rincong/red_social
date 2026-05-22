@@ -1,103 +1,149 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Crear Noticia - LIBRE CONECT</title>
-    <style>
-      body {
-        font-family: "Inter", sans-serif;
-        background: #fafafa;
-        padding: 40px;
-      }
-      .form-container {
-        max-width: 800px;
-        margin: auto;
-        background: white;
-        padding: 40px;
-        border-radius: 12px;
-        border: 1px solid #e5e5e5;
-      }
-      input,
-      select,
-      textarea {
-        width: 100%;
-        padding: 12px;
-        margin-top: 8px;
-        border: 1px solid #e5e5e5;
-        border-radius: 8px;
-        box-sizing: border-box;
-      }
-      .btn-guardar {
-        background: #1a1a1a;
-        color: white;
-        padding: 15px 30px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        margin-top: 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="form-container">
-      <h1>Crear Nueva Noticia</h1>
-      <form id="formNoticia">
-        <label>Título *</label>
-        <input type="text" id="titulo" required />
+<head>
+  <meta charset="UTF-8" />
+  <title>Crear Noticia - LIBRE CONECT</title>
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background: #fafafa;
+      padding: 40px;
+    }
+    .form-container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      border: 1px solid #e5e5e5;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      border: 1px solid #e5e5e5;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+    .btn-guardar {
+      background: #1a1a1a;
+      color: white;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    /* Estilos para gestión de categorías */
+    .cat-container { background: #f9f9f9; padding: 20px; border-radius: 8px; margin-bottom: 30px; border: 1px dashed #ccc; }
+    .cat-item { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #eee; }
+    .btn-del { color: #d9534f; cursor: pointer; font-size: 14px; font-weight: bold; }
+  </style>
+</head>
+<body>
 
-        <label style="display: block; margin-top: 20px">Categoría *</label>
-        <select id="categoria">
-          <option value="General">General</option>
-          <option value="Urgente">Urgente</option>
-          <option value="Evento">Evento</option>
-        </select>
-
-        <label style="display: block; margin-top: 20px"
-          >Imagen de portada *</label
-        >
-        <input type="file" id="imagenInput" accept="image/*" required />
-
-        <label style="display: block; margin-top: 20px">Cuerpo del Post</label>
-        <textarea id="resumen" style="height: 150px" required></textarea>
-
-        <button type="submit" class="btn-guardar">Publicar noticia</button>
-        <a href="admin.html" style="margin-left: 20px; color: #666">Cancelar</a>
-      </form>
+<div class="form-container">
+  <div class="cat-container">
+    <h3>Gestión de Categorías</h3>
+    <div style="display: flex; gap: 10px;">
+      <input type="text" id="nuevaCatInput" placeholder="Nombre de nueva categoría" />
+      <button onclick="agregarCategoria()" class="btn-guardar" style="margin-top: 8px;">Agregar</button>
     </div>
+    <div id="listaCategorias" style="margin-top: 15px;"></div>
+  </div>
 
-    <script>
-      document
-        .getElementById("formNoticia")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
+  <h1>Crear Nueva Noticia</h1>
+  <form id="formNoticia">
+    <label>Título *</label>
+    <input type="text" id="titulo" required />
 
-          const file = document.getElementById("imagenInput").files[0];
-          const reader = new FileReader();
+    <label style="display: block; margin-top: 20px">Categoría *</label>
+    <select id="categoria"></select>
 
-          reader.onloadend = function () {
-            const nueva = {
-              titulo: document.getElementById("titulo").value,
-              fecha: new Date().toLocaleDateString(), // o formato deseado
-              img: reader.result,
-              texto: document.getElementById("resumen").value,
-            };
+    <label style="display: block; margin-top: 20px">Imagen de portada *</label>
+    <input type="file" id="imagenInput" accept="image/*" required />
 
-            let noticias = JSON.parse(
-              localStorage.getItem("base_noticias") || "{}",
-            );
+    <label style="display: block; margin-top: 20px">Cuerpo del Post</label>
+    <textarea id="resumen" style="height: 150px" required></textarea>
 
-            const nuevoId = Date.now().toString();
+    <button type="submit" class="btn-guardar">Publicar noticia</button>
+    <a href="admin.html" style="margin-left: 20px; color: #666">Cancelar</a>
+  </form>
+</div>
 
-            noticias[nuevoId] = nueva;
+<script>
+  // Cargar categorías o definir por defecto
+  let categorias = JSON.parse(localStorage.getItem("categorias_noticias") || '["General", "Urgente", "Evento"]');
 
-            localStorage.setItem("base_noticias", JSON.stringify(noticias));
+  function renderCategorias() {
+    const lista = document.getElementById("listaCategorias");
+    const select = document.getElementById("categoria");
+    lista.innerHTML = "";
+    select.innerHTML = "";
+    
+    categorias.forEach((cat, index) => {
+      // Llenar select
+      select.innerHTML += `<option value="${cat}">${cat}</option>`;
+      // Llenar lista visual
+      lista.innerHTML += `<div class="cat-item">
+        <span>${cat}</span>
+        ${index > 2 ? `<span class="btn-del" onclick="eliminarCategoria(${index})">Eliminar</span>` : ''}
+      </div>`;
+    });
+  }
 
-            alert("¡Noticia publicada con éxito!");
-            window.location.href = "admin.html";
-          };
+  function agregarCategoria() {
+    const input = document.getElementById("nuevaCatInput");
+    const val = input.value.trim();
+    if(val && !categorias.includes(val)) {
+      categorias.push(val);
+      localStorage.setItem("categorias_noticias", JSON.stringify(categorias));
+      renderCategorias();
+      input.value = "";
+    } else {
+      alert("La categoría ya existe o está vacía.");
+    }
+  }
 
-          if (file) reader.readAsDataURL(file);
-        });
-    </script>
-  </body>
+  function eliminarCategoria(index) {
+    if(confirm("¿Estás seguro de eliminar esta categoría?")) {
+      categorias.splice(index, 1);
+      localStorage.setItem("categorias_noticias", JSON.stringify(categorias));
+      renderCategorias();
+    }
+  }
+
+  // Inicializar vista
+  renderCategorias();
+
+  // Guardar noticia
+  document.getElementById("formNoticia").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const file = document.getElementById("imagenInput").files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = function () {
+      const nueva = {
+        titulo: document.getElementById("titulo").value,
+        categoria: document.getElementById("categoria").value,
+        fecha: new Date().toLocaleDateString(),
+        img: reader.result,
+        texto: document.getElementById("resumen").value,
+      };
+
+      let noticias = JSON.parse(localStorage.getItem("base_noticias") || "{}");
+      const nuevoId = Date.now().toString();
+      noticias[nuevoId] = nueva;
+
+      localStorage.setItem("base_noticias", JSON.stringify(noticias));
+      alert("¡Noticia publicada con éxito!");
+      window.location.href = "admin.html";
+    };
+
+    if (file) reader.readAsDataURL(file);
+  });
+</script>
+
+</body>
 </html>
