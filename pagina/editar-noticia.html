@@ -18,11 +18,7 @@
             <input type="text" id="titulo" required>
 
             <label style="display:block; margin-top: 20px;">Categoría *</label>
-            <select id="categoria">
-                <option value="General">General</option>
-                <option value="Urgente">Urgente</option>
-                <option value="Evento">Evento</option>
-            </select>
+            <select id="categoria"></select>
 
             <label style="display:block; margin-top: 20px;">Imagen de portada (Selecciona solo si quieres cambiarla)</label>
             <input type="file" id="imagenInput" accept="image/*">
@@ -36,42 +32,51 @@
     </div>
 
     <script>
-        // 1. Obtener ID de la noticia a editar
+        // 1. Obtener ID y datos iniciales
         const params = new URLSearchParams(window.location.search);
         const idNoticia = params.get('id');
         const noticias = JSON.parse(localStorage.getItem("base_noticias") || "{}");
         const noticia = noticias[idNoticia];
+        const categorias = JSON.parse(localStorage.getItem("categorias_noticias") || '["General", "Urgente", "Evento"]');
 
-        // 2. Cargar datos existentes en el formulario
+        // 2. Cargar categorías en el select
+        const selectCat = document.getElementById('categoria');
+        categorias.forEach(cat => {
+            const option = document.createElement("option");
+            option.value = cat;
+            option.text = cat;
+            selectCat.appendChild(option);
+        });
+
+        // 3. Cargar datos existentes en el formulario
         if (noticia) {
             document.getElementById('titulo').value = noticia.titulo;
             document.getElementById('resumen').value = noticia.texto;
+            selectCat.value = noticia.categoria || "General";
         } else {
             alert("Noticia no encontrada");
             window.location.href = "admin.html";
         }
 
-        // 3. Lógica para guardar la edición
+        // 4. Lógica para guardar la edición
         document.getElementById('formNoticia').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const fileInput = document.getElementById('imagenInput');
             
-            // Función para actualizar el localStorage
             const procesarGuardado = (imagenData) => {
                 noticias[idNoticia] = {
                     titulo: document.getElementById('titulo').value,
                     categoria: document.getElementById('categoria').value,
                     texto: document.getElementById('resumen').value,
-                    img: imagenData || noticia.img, // Si no hay nueva, mantiene la vieja
-                    fecha: noticia.fecha // Mantiene la fecha original
+                    img: imagenData || noticia.img,
+                    fecha: noticia.fecha
                 };
                 localStorage.setItem("base_noticias", JSON.stringify(noticias));
                 alert("¡Noticia actualizada!");
                 window.location.href = "admin.html";
             };
 
-            // Si hay nueva imagen, la leemos, si no, guardamos directo
             if (fileInput.files[0]) {
                 const reader = new FileReader();
                 reader.onloadend = () => procesarGuardado(reader.result);
