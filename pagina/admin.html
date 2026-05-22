@@ -153,16 +153,18 @@
         listaNoticias.sort((a, b) => b.id - a.id);
 
         listaNoticias.forEach((n) => {
+          // Si la categoría no existe (en las noticias viejas), ponemos "Sin categoría"
+          const categoria = n.categoria || "General"; 
+          
           contenedor.innerHTML += `
             <div class="noticia-card">
                 <img src="${n.img}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px;">
-                <div>
+                <div style="flex-grow: 1;">
                     <h3 style="margin:0">${n.titulo}</h3>
-                    <small style="color: #666;">${n.fecha}</small>
+                    <small style="color: #666;">${n.fecha} | <b>${categoria}</b></small>
                 </div>
-                <button class="btn-borrar" onclick="borrar('${n.id}')">Eliminar</button>
-
                 <a href="editar-noticia.html?id=${n.id}" class="btn-editar">Editar</a>
+                <button class="btn-borrar" onclick="borrar('${n.id}')">Eliminar</button>
             </div>`;
         });
       }
