@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias Administrativas</title>
-    <link rel="stylesheet" href="css/noticias.css">
+    <link rel="stylesheet" href="noticias.css">
 </head>
 <body>
     <div class="navbar">
@@ -26,39 +26,87 @@
 
     <main class="content-container">
         <nav class="filter-bar">
-            <button class="btn active">Todas</button>
-            <button class="btn">Urgentes</button>
-            <button class="btn">Comunicados</button>
-            <button class="btn">Eventos</button>
+            <!-- Nota: El script busca por el texto del botón, asegúrate de que coincida con la categoría -->
+            <button class="btn active" onclick="filtrar('todas')">Todas</button>
+            <button class="btn" onclick="filtrar('urgente')">Urgentes</button>
+            <button class="btn" onclick="filtrar('comunicado')">Comunicados</button>
+            <button class="btn" onclick="filtrar('evento')">Eventos</button>
         </nav>
 
-        <article class="featured-news">
-            <div class="tag urgent">URGENTE</div>
+        <!-- Se añadió la clase 'categoria-urgente' para que el filtro la reconozca -->
+        <article class="featured-news categoria-urgente">
+            <img src="imagenes_noticias/imagen1.png" alt="Cambio horario">
+            <div class="tag urgent">Urgente</div>
             <h2>Cambio de horario en exámenes finales</h2>
             <p>Información importante sobre la reprogramación de evaluaciones...</p>
             <div class="meta-info">
                 <span>📅 8 de Abril, 2026</span>
                 <span>🎓 Académico</span>
             </div>
-            <a href="#" class="btn-action">Leer más</a>
+            <a href="noticia.html?id=1" class="btn-action">Leer más</a>
         </article>
 
         <section class="news-grid">
-            <article class="news-card">
+            <article class="news-card categoria-evento">
+                <img src="imagenes_noticias/imagen2.png" alt="Feria de Emprendimiento">
                 <span class="tag">Evento</span>
                 <h3>Feria de Emprendimiento 2026</h3>
                 <p>Únete a nuestra feria anual donde estudiantes presentan sus proyectos.</p>
-                <a href="#" class="btn-action">Ver detalles</a>
+                <p><small>📅 10 de Mayo, 2026</small></p>
+                <a href="noticia.html?id=2" class="btn-action">Ver detalles</a>
             </article>
             
-            <article class="news-card">
+            <article class="news-card categoria-comunicado">
+                <img src="imagenes_noticias/imagen3.png" alt="Becas">
                 <span class="tag">Comunicado</span>
                 <h3>Nuevas becas disponibles</h3>
                 <p>La universidad abre convocatoria para becas académicas.</p>
-                <a href="#" class="btn-action">Ver detalles</a>
+                <p><small>📅 12 de Mayo, 2026</small></p>
+                <a href="noticia.html?id=3" class="btn-action">Ver detalles</a>
+            </article>
+
+            <article class="news-card categoria-noticia">
+                <img src="imagenes_noticias/imagen4.png" alt="Biblioteca">
+                <span class="tag">Noticia</span>
+                <h3>Nueva biblioteca digital inaugurada</h3>
+                <p>Acceso a miles de recursos académicos digitales disponible 24/7.</p>
+                <p><small>📅 15 de Mayo, 2026</small></p>
+                <a href="noticia.html?id=4" class="btn-action">Ver detalles</a>
+            </article>
+
+            <article class="news-card categoria-evento">
+                <img src="imagenes_noticias/imagen5.png" alt="Semana Cultural">
+                <span class="tag">Evento</span>
+                <h3>Semana Cultural</h3>
+                <p>Una semana de actividades culturales, presentaciones artísticas y deportivas.</p>
+                <p><small>📅 20 de Mayo, 2026</small></p>
+                <a href="noticia.html?id=5" class="btn-action">Ver detalles</a>
             </article>
         </section>
     </main>
 
+    <script>
+        function filtrar(categoria) {
+            // Actualizar botones activos
+            const botones = document.querySelectorAll('.filter-bar .btn');
+            botones.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Filtrar elementos
+            const todos = document.querySelectorAll('.news-card, .featured-news');
+            
+            todos.forEach(item => {
+                if (categoria === 'todas') {
+                    item.style.display = 'block';
+                } else {
+                    if (item.classList.contains('categoria-' + categoria)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
