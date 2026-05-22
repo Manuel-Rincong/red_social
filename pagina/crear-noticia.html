@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Crear Noticia - LIBRE CONECT</title>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background: #fafafa;
+        padding: 40px;
+      }
+      .form-container {
+        max-width: 800px;
+        margin: auto;
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        border: 1px solid #e5e5e5;
+      }
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        margin-top: 8px;
+        border: 1px solid #e5e5e5;
+        border-radius: 8px;
+        box-sizing: border-box;
+      }
+      .btn-guardar {
+        background: #1a1a1a;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Crear Nueva Noticia</h1>
+      <form id="formNoticia">
+        <label>Título *</label>
+        <input type="text" id="titulo" required />
+
+        <label style="display: block; margin-top: 20px">Categoría *</label>
+        <select id="categoria">
+          <option value="General">General</option>
+          <option value="Urgente">Urgente</option>
+          <option value="Evento">Evento</option>
+        </select>
+
+        <label style="display: block; margin-top: 20px"
+          >Imagen de portada *</label
+        >
+        <input type="file" id="imagenInput" accept="image/*" required />
+
+        <label style="display: block; margin-top: 20px">Cuerpo del Post</label>
+        <textarea id="resumen" style="height: 150px" required></textarea>
+
+        <button type="submit" class="btn-guardar">Publicar noticia</button>
+        <a href="admin.html" style="margin-left: 20px; color: #666">Cancelar</a>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("formNoticia")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const file = document.getElementById("imagenInput").files[0];
+          const reader = new FileReader();
+
+          reader.onloadend = function () {
+            const nueva = {
+              titulo: document.getElementById("titulo").value,
+              fecha: new Date().toLocaleDateString(), // o formato deseado
+              img: reader.result,
+              texto: document.getElementById("resumen").value,
+            };
+
+            let noticias = JSON.parse(
+              localStorage.getItem("base_noticias") || "{}",
+            );
+
+            const nuevoId = Date.now().toString();
+
+            noticias[nuevoId] = nueva;
+
+            localStorage.setItem("base_noticias", JSON.stringify(noticias));
+
+            alert("¡Noticia publicada con éxito!");
+            window.location.href = "admin.html";
+          };
+
+          if (file) reader.readAsDataURL(file);
+        });
+    </script>
+  </body>
+</html>

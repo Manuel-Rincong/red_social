@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Noticia - LIBRE CONECT</title>
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #FAFAFA; padding: 40px; }
+        .form-container { max-width: 800px; margin: auto; background: white; padding: 40px; border-radius: 12px; border: 1px solid #E5E5E5; }
+        input, select, textarea { width: 100%; padding: 12px; margin-top: 8px; border: 1px solid #E5E5E5; border-radius: 8px; box-sizing: border-box; }
+        .btn-guardar { background: #1a1a1a; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Editar Noticia</h1>
+        <form id="formNoticia">
+            <label>Título *</label>
+            <input type="text" id="titulo" required>
+
+            <label style="display:block; margin-top: 20px;">Categoría *</label>
+            <select id="categoria">
+                <option value="General">General</option>
+                <option value="Urgente">Urgente</option>
+                <option value="Evento">Evento</option>
+            </select>
+
+            <label style="display:block; margin-top: 20px;">Imagen de portada (Selecciona solo si quieres cambiarla)</label>
+            <input type="file" id="imagenInput" accept="image/*">
+
+            <label style="display:block; margin-top: 20px;">Cuerpo del Post</label>
+            <textarea id="resumen" style="height: 250px;" required></textarea>
+            
+            <button type="submit" class="btn-guardar">Guardar cambios</button>
+            <a href="admin.html" style="margin-left: 20px; color: #666;">Cancelar</a>
+        </form>
+    </div>
+
+    <script>
+        // 1. Obtener ID de la noticia a editar
+        const params = new URLSearchParams(window.location.search);
+        const idNoticia = params.get('id');
+        const noticias = JSON.parse(localStorage.getItem("base_noticias") || "{}");
+        const noticia = noticias[idNoticia];
+
+        // 2. Cargar datos existentes en el formulario
+        if (noticia) {
+            document.getElementById('titulo').value = noticia.titulo;
+            document.getElementById('resumen').value = noticia.texto;
+        } else {
+            alert("Noticia no encontrada");
+            window.location.href = "admin.html";
+        }
+
+        // 3. Lógica para guardar la edición
+        document.getElementById('formNoticia').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('imagenInput');
+            
+            // Función para actualizar el localStorage
+            const procesarGuardado = (imagenData) => {
+                noticias[idNoticia] = {
+                    titulo: document.getElementById('titulo').value,
+                    categoria: document.getElementById('categoria').value,
+                    texto: document.getElementById('resumen').value,
+                    img: imagenData || noticia.img, // Si no hay nueva, mantiene la vieja
+                    fecha: noticia.fecha // Mantiene la fecha original
+                };
+                localStorage.setItem("base_noticias", JSON.stringify(noticias));
+                alert("¡Noticia actualizada!");
+                window.location.href = "admin.html";
+            };
+
+            // Si hay nueva imagen, la leemos, si no, guardamos directo
+            if (fileInput.files[0]) {
+                const reader = new FileReader();
+                reader.onloadend = () => procesarGuardado(reader.result);
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                procesarGuardado();
+            }
+        });
+    </script>
+</body>
+</html>

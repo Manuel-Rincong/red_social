@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Panel de Control - LIBRE CONECT</title>
+    <style>
+      /* Navbar */
+      .navbar {
+        background: #ed3c3c;
+        padding: 20px 5%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: white;
+      }
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .nav-links {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-left: auto;
+      }
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+      }
+      .icon-btn {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+        background: #fafafa;
+      }
+      .container {
+        max-width: 900px;
+        margin: auto;
+      }
+      .noticia-card {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        border: 1px solid #e5e5e5;
+      }
+      .btn-crear {
+        background: #1a1a1a;
+        color: white;
+        padding: 12px 20px;
+        text-decoration: none;
+        border-radius: 8px;
+      }
+      .btn-borrar {
+        background: #ed3c3c;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        margin-left: auto;
+      }
+      .btn-editar {
+        background: #f0f0f0;
+        color: #333;
+        padding: 8px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        margin-right: 10px;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">LIBRE CONECT</div>
+      <nav class="nav-links">
+        <a href="home.html">Inicio</a>
+        <a href="social_admin.html">Red Social</a>
+        <a href="#">Noticias</a>
+        <a href="#">FAQ</a>
+        <button class="icon-btn">🔍</button>
+        <button class="icon-btn">👤</button>
+      </nav>
+    </div>
+    <div class="container">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 30px;
+        "
+      >
+        <h1>Gestión de Noticias</h1>
+        <a href="crear-noticia.html" class="btn-crear">+ Crear Nueva Noticia</a>
+      </div>
+      <div id="lista-noticias"></div>
+    </div>
+
+    <script>
+      const noticiasIniciales = {
+        1: {
+          titulo: "Cambio de horario en exámenes finales",
+          fecha: "8/04/2026",
+          img: "imagenes_noticias/imagen1.png",
+          texto: "Debido a condiciones climáticas imprevistas...",
+        },
+        2: {
+          titulo: "Feria de Emprendimiento 2026",
+          fecha: "10/05/2026",
+          img: "imagenes_noticias/imagen2.png",
+          texto: "¡Llega nuestra feria anual de emprendimiento!...",
+        },
+        3: {
+          titulo: "Nuevas becas disponibles",
+          fecha: "12/05/2026",
+          img: "imagenes_noticias/imagen3.png",
+          texto: "La oficina de Bienestar Universitario...",
+        },
+        4: {
+          titulo: "Nueva biblioteca digital inaugurada",
+          fecha: "15/05/2026",
+          img: "imagenes_noticias/imagen4.png",
+          texto: "Con gran orgullo, anunciamos la inauguración...",
+        },
+        5: {
+          titulo: "Semana Cultural",
+          fecha: "20/05/2026",
+          img: "imagenes_noticias/imagen5.png",
+          texto: "¡Prepárense para vivir una experiencia inolvidable!...",
+        },
+      };
+
+      function cargarNoticias() {
+        let noticias = JSON.parse(
+          localStorage.getItem("base_noticias") || "{}",
+        );
+        const contenedor = document.getElementById("lista-noticias");
+        contenedor.innerHTML = "";
+
+        const listaNoticias = Object.keys(noticias).map((id) => ({
+          id: id,
+          ...noticias[id],
+        }));
+
+        listaNoticias.sort((a, b) => b.id - a.id);
+
+        listaNoticias.forEach((n) => {
+          contenedor.innerHTML += `
+            <div class="noticia-card">
+                <img src="${n.img}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; margin-right: 20px;">
+                <div>
+                    <h3 style="margin:0">${n.titulo}</h3>
+                    <small style="color: #666;">${n.fecha}</small>
+                </div>
+                <button class="btn-borrar" onclick="borrar('${n.id}')">Eliminar</button>
+
+                <a href="editar-noticia.html?id=${n.id}" class="btn-editar">Editar</a>
+            </div>`;
+        });
+      }
+
+      function borrar(id) {
+        if (confirm("¿Seguro que deseas eliminar esta noticia?")) {
+          let noticias = JSON.parse(localStorage.getItem("base_noticias"));
+          delete noticias[id];
+          localStorage.setItem("base_noticias", JSON.stringify(noticias));
+          cargarNoticias();
+        }
+      }
+      cargarNoticias();
+
+      function guardarNoticia() {
+        const titulo = document.getElementById("titulo").value;
+        const fecha = "21 de Mayo, 2026";
+        const texto = document.getElementById("texto").value;
+
+        let noticias = JSON.parse(
+          localStorage.getItem("base_noticias") || "{}",
+        );
+
+        const ids = Object.keys(noticias).map(Number);
+        const nuevoId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+
+        noticias[nuevoId] = {
+          titulo: titulo,
+          fecha: fecha,
+          img: "imagenes_noticias/default.png",
+          texto: texto,
+        };
+
+        localStorage.setItem("base_noticias", JSON.stringify(noticias));
+
+        alert("Noticia creada con éxito");
+        window.location.href = "admin.html";
+      }
+    </script>
+  </body>
+</html>
