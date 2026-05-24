@@ -127,7 +127,7 @@
 
 <script>
 function login(){
-    let u = document.getElementById("usuario").value.trim();
+    let u = document.getElementById("usuario").value;
     let c = document.getElementById("clave").value;
     let msg = document.getElementById("mensaje");
 
@@ -144,11 +144,11 @@ function login(){
 
     if(u === "administrador@unilibre.edu.co" && c === "12345678"){
         msg.innerHTML = "Bienvenido Admin";
-        window.location.href = "/home_admin.html";
+        window.location.href = "../home-admin.html";
     }
     else if(u === "usuario@unilibre.edu.co" && c === "87654321"){
         msg.innerHTML = "Bienvenido Usuario";
-        window.location.href = "/home.html";
+        window.location.href = "../home.html";
     }
     else{
         msg.innerHTML = "Datos incorrectos";
