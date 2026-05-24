@@ -107,10 +107,12 @@ function login(){
     if(u === "administador@unilibre.edu.co" && c === "12345678"){
         msg.innerHTML = "Bienvenido Admin";
         /*window.location.href = "pestaña.html";*/
+        window.location.href = "home_admin";
     }
     else if(u === "usuario@unilibre.edu.co" && c === "87654321"){
         msg.innerHTML = "Bienvenido Usuario";
        /* window.location.href = "pestaña.html";*/
+       window.location.href = "home.html";
     }
     else{
         msg.innerHTML = "Datos incorrectos";
