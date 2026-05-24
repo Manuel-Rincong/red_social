@@ -1,31 +1,47 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/social.css">
     <title>LIBRE CONECT - Red Social</title>
 </head>
+
 <body>
+
     <div class="navbar">
         <div class="logo">LIBRE CONECT</div>
+
         <nav class="nav-links">
             <a href="home.html">Inicio</a>
             <a href="#">Red Social</a>
             <a href="noticias.html">Noticias</a>
             <a href="#">FAQ</a>
+
             <button class="icon-btn">🔍</button>
             <a href="perfil.html" class="icon-btn">👤</a>
         </nav>
     </div>
 
     <main class="container">
+
         <h1>Red Social Universitaria</h1>
-        
+
         <!-- Caja para crear post -->
         <section class="post-box">
+
             <div class="avatar">TU</div>
-            <textarea placeholder="¿Qué estás pensando?"></textarea>
-            <button class="filter-btn active">Publicar</button>
+
+            <textarea 
+                id="post-text"
+                placeholder="¿Qué estás pensando?"
+            ></textarea>
+
+            <button 
+                id="publish-btn"
+                class="filter-btn active"
+            >
+                Publicar
+            </button>
 
         </section>
 
@@ -36,38 +52,33 @@
             <button class="filter-btn">Siguiendo</button>
         </div>
 
-        <!-- Feed de posts -->
-        <section class="feed">
+        <!-- Feed -->
+        <section id="main-feed" class="feed">
+
             <article class="post">
+
                 <div class="post-header">
+
                     <div class="avatar user-am">AM</div>
+
                     <div>
                         <strong>Ana Martínez</strong>
                         <p>Estudiante • Hace 2 horas</p>
                     </div>
+
                 </div>
+
                 <p>¡Excelente seminario sobre IA! Muy recomendado.</p>
+
                 <img src="https://placehold.co/481x256" alt="Post">
+
             </article>
+
         </section>
-    
-        
-        <!-- Feed de posts -->
-            <section class="feed">
-                <article class="post">
-                    <div class="post-header">
-                        <div class="avatar user-am">AM</div>
-                        
-                        <div>
-                            <strong>Ana Martínez</strong>
-                            <p>Estudiante • Hace 2 horas</p>
-                        </div>
-                    </div>
-                    <p>¡Excelente seminario sobre IA! Muy recomendado.</p>
-                    <img src="https://placehold.co/481x256" alt="Post">
-                </article>
-            </section>
-        </main>
-        <script src="js/social.js"></script>
+
+    </main>
+
+    <script src="js/social.js"></script>
+
 </body>
 </html>
