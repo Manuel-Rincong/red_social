@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crear cuenta</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: Arial;
+    }
+
+    body{
+        background:#fff;
+    }
+
+    .barra-superior{
+        width:100%;
+        height:100px;
+        background:red;
+        position:fixed;
+        top:0;
+        left:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:0 20px;
+    }
+
+    .logo{
+        width:90px;
+        height:90px;
+        object-fit:cover;
+    }
+
+    .barra-superior h1{
+        color:white;
+        font-size:40px;
+        font-weight:bold;
+        letter-spacing:3px;
+    }
+
+    .contenedor{
+        width:350px;
+        background:white;
+        padding:40px;
+        margin:140px auto;
+        border-radius:20px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        text-align:center;
+    }
+
+    input{
+        width:100%;
+        padding:12px;
+        margin:10px 0;
+        border:1px solid #ccc;
+        border-radius:10px;
+    }
+
+    button{
+        width:100%;
+        padding:12px;
+        background:red;
+        color:white;
+        border:none;
+        cursor:pointer;
+        border-radius:10px;
+    }
+
+    button:hover{
+        background:darkred;
+    }
+
+    .mensaje{
+        margin-top:10px;
+        font-weight:bold;
+    }
+
+    .volver{
+        margin-top:15px;
+        color:red;
+        cursor:pointer;
+        font-size:14px;
+    }
+
+    .volver:hover{
+        text-decoration:underline;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="barra-superior">
+    <img src="logo.webp" class="logo">
+    <h1>LIBRE CONECT</h1>
+</div>
+
+<div class="contenedor">
+
+    <h2>Crear cuenta</h2>
+
+    <input type="text" id="usuario" placeholder="Correo @unilibre.edu.co">
+    <input type="password" id="clave" placeholder="Contraseña (mínimo 8 caracteres)">
+    <input type="password" id="confirmar" placeholder="Confirmar contraseña">
+
+    <button onclick="crearCuenta()">Crear cuenta</button>
+
+    <p class="volver" onclick="volver()">
+        Volver al inicio de sesión
+    </p>
+
+    <div class="mensaje" id="mensaje"></div>
+
+</div>
+
+<script>
+
+function crearCuenta(){
+    let u = document.getElementById("usuario").value;
+    let c = document.getElementById("clave").value;
+    let conf = document.getElementById("confirmar").value;
+    let msg = document.getElementById("mensaje");
+
+    // validar correo
+    if(!u.includes("@unilibre.edu.co")){
+        msg.innerHTML = "El correo debe ser @unilibre.edu.co";
+        msg.style.color = "red";
+        return;
+    }
+
+    // validar contraseña
+    if(c.length < 8){
+        msg.innerHTML = "La contraseña debe tener mínimo 8 caracteres";
+        msg.style.color = "red";
+        return;
+    }
+
+    // confirmar contraseña
+    if(c !== conf){
+        msg.innerHTML = "Las contraseñas no coinciden";
+        msg.style.color = "red";
+        return;
+    }
+
+    msg.innerHTML = "Cuenta creada exitosamente";
+    msg.style.color = "green";
+}
+
+function volver(){
+    window.location.href = "Inicio.html";
+}
+
+</script>
+
+</body>
+</html>

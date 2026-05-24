@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: Arial;
+    }
+
+    body{
+        background:#ffffff;
+    }
+
+    /* parametros de las cosas de la barra roja */
+    .barra-superior{
+        width:100%;
+        height:100px;
+        background:red;
+        position:fixed;
+        top:0;
+        left:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:0 20px;
+    }
+
+    /*imagen de logo de la u */
+    .logo{
+        width:90px !important;
+        height:90px !important;
+        object-fit:cover;
+    }
+
+    /* TÍTULO */
+    .barra-superior h1{
+        color:white;
+        font-size:40px;
+        font-weight:bold;
+        letter-spacing:3px;
+    }
+
+    /* parametros del LOGIN */
+    .contenedor{
+        width:350px;
+        background:white;
+        padding:40px;
+        margin:140px auto;
+        border-radius:20px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        text-align:center;
+    }
+
+    input{
+        width:100%;
+        padding:12px;
+        margin:10px 0;
+    }
+
+    button{
+        width:100%;
+        padding:12px;
+        background:red;
+        color:white;
+        border:none;
+        cursor:pointer;
+        border-radius:10px;
+    }
+
+    .mensaje{
+        margin-top:10px;
+    }
+
+    /* olvidaste contraseña */
+    .olvido{
+        margin-top:15px;
+        color:red;
+        cursor:pointer;
+        font-size:14px;
+    }
+
+    .olvido:hover{
+        text-decoration:underline;
+    }
+
+    .crear{
+         margin-top:15px;
+        color:rgb(121, 90, 90);
+        cursor:pointer;
+        font-size:14px;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="barra-superior">
+    <img src="logo.webp" class="logo">  
+    <h1>LIBRE CONECT</h1>
+</div>
+
+<div class="contenedor">
+    <h2>Inicio de sesión</h2>
+
+    <input type="text" id="usuario" placeholder="Usuario">
+    <input type="password" id="clave" placeholder="Contraseña">
+
+    <button onclick="login()">Entrar</button>
+
+    <p class="olvido" onclick="recuperar()">
+        ¿Olvidaste tu contraseña?
+    </p>
+
+    <p class="crear" onclick="crear()">
+        Crear nueva cuenta
+    </p>
+
+    <div class="mensaje" id="mensaje"></div>
+</div>
+
+<script>
+function login(){
+    let u = document.getElementById("usuario").value;
+    let c = document.getElementById("clave").value;
+    let msg = document.getElementById("mensaje");
+
+    if(!u.includes("@unilibre.edu.co")){
+        msg.innerHTML = "Usuario o contraseña invalidos rectifica que cumpla con los requisitos";
+        msg.style.color = "red";
+        return;
+    }
+    if(c.length<8){
+        msg.innerHTML = "Usuario o contraseña invalidos rectifica que cumpla con los requisitos";
+        msg.style.color = "red";
+        return;
+    }
+
+    if(u === "administrador@unilibre.edu.co" && c === "12345678"){
+        msg.innerHTML = "Bienvenido Admin";
+        window.location.href = "../home-admin.html";
+    }
+    else if(u === "usuario@unilibre.edu.co" && c === "87654321"){
+        msg.innerHTML = "Bienvenido Usuario";
+        window.location.href = "../home.html";
+    }
+    else{
+        msg.innerHTML = "Datos incorrectos";
+    }
+}
+
+function recuperar(){
+    window.location.href = "Rcontraseña.html";
+}
+
+function crear(){
+    window.location.href = "Ccuenta.html";
+}
+
+</script>
+
+</body>
+</html>
