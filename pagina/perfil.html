@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/perfil.css">
 </head>
 <body>
-        <header class="navbar">
+    <header class="navbar">
         <div class="logo">LIBRE CONECT</div>
         <nav class="nav-links">
             <a href="home.html">Inicio</a>
@@ -18,10 +18,11 @@
             <a href="perfil.html" class="icon-btn">👤</a>
         </nav>
     </header>
+
     <main class="app-main-content">
         
         <section id="perfil" class="profile-section">
-            <div class="profile-card">
+            <div class="profile-card" style="position: relative;">
                 <div class="profile-header">
                     <div class="profile-avatar">MG</div>
                     <div class="profile-user-info">
@@ -30,6 +31,8 @@
                         <p class="user-phone">+34 612 345 678</p>
                     </div>
                 </div>
+                
+                <div class="info-field" style="margin-top: 15px;">
                     <strong>Biografía</strong>
                     <p style="margin-top: 5px;">Estudiante de ingeniería en sistemas.</p>
                 </div>
@@ -53,27 +56,29 @@
                 </div>
 
                 <div class="info-block">
-    <h2>Configuración de cuenta</h2>
+                    <h2>Configuración de cuenta</h2>
 
-            <div class="setting-row">
-                <div class="setting-text">
-                    <span class="setting-title">Notificaciones por email</span>
-                    <span class="setting-desc">Recibe actualizaciones</span>
+                    <div class="setting-row">
+                        <div class="setting-text">
+                            <span class="setting-title">Notificaciones por email</span>
+                            <span class="setting-desc">Recibe actualizaciones</span>
+                        </div>
+                    </div>
+
+                    <div class="setting-row">
+                        <div class="setting-text">
+                            <span class="setting-title">Perfil público</span>
+                            <span class="setting-desc">Visible para otros usuarios</span>
+                        </div>
+                    </div>
+
+                    <div class="password-container" style="margin-bottom: 15px;">
+                        <button class="btn-secondary">Cambiar contraseña</button>
+                    </div>
+
+                    <a href="html/Inicio.html" class="btn-secondary" style="text-decoration: none; display: inline-block; text-align: center; width: 100%; background: red; color: white; padding: 12px; border-radius: 10px;">Cerrar sesión</a>
                 </div>
             </div>
-
-            <div class="setting-row">
-                <div class="setting-text">
-                    <span class="setting-title">Perfil público</span>
-                    <span class="setting-desc">Visible para otros usuarios</span>
-                </div>
-            </div>
-
-            <div class="password-container">
-                <button class="btn-secondary">Cambiar contraseña</button>
-            </div>
-            </div>
-</div>
 
             <div class="profile-activity">
                 <h2>Actividad reciente</h2>
@@ -89,13 +94,9 @@
                     <span>Iniciaste sesión desde un nuevo dispositivo</span>
                     <span class="field-label">Hace 1 semana</span>
                 </div>
-                ,
-            </div>
-             <a href="html/Inicio.html" class="btn-secondary" style="text-decoration: none; display: inline-block; text-align: center; width: 100%; background: red; color: white; padding: 12px; border-radius: 10px;">Cerrar sesión</a>
             </div>
         </section>
 
     </main>
-
 </body>
 </html>
