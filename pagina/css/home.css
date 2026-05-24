@@ -60,5 +60,5 @@
 /* Responsividad */
 @media (max-width: 768px) {
     .testimonial-card { width: 100%; }
-    .hero h1 { font-size: 32px; }
+    .hero h1 { font-size: 31px; }
 }
