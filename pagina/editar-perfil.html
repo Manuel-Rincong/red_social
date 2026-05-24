@@ -11,55 +11,50 @@
     <header class="navbar">
         <div class="logo">LIBRE CONECT</div>
         <nav class="nav-links">
-            <a href="home.html">Inicio</a>
-            <a href="social.html">Red Social</a>
-            <a href="noticias.html">Noticias</a>
+            <a href="home_admin.html">Inicio</a>
+            <a href="social_admin.html">Red Social</a>
+            <a href="noticias_admin.html">Noticias</a>
             <a href="#">FAQ</a>
-            <a href="noticias.html" class="icon-btn">🔍</a>
-            <a href="perfil.html" class="icon-btn">👤</a>
+            <a href="noticias_admin.html" class="icon-btn">🔍</a>
+            <a href="perfil_admin.html" class="icon-btn">👤</a>
         </nav>
     </header>
 
     <main class="app-main-content">
         <section class="profile-section">
-            
             <div class="profile-card">
                 <h2>Editar Información Personal</h2>
                 
-                <form action="perfil.html" onsubmit="alert('SE GUARDARON CORRECTAMENTE');">
-                    
+                <form onsubmit="event.preventDefault(); localStorage.setItem('adminNombre', document.getElementById('edit-nombre').value); localStorage.setItem('adminCorreo', document.getElementById('edit-correo').value); localStorage.setItem('adminTelefono', document.getElementById('edit-telefono').value); localStorage.setItem('adminBio', document.getElementById('edit-biografia').value); alert('SE GUARDARON CORRECTAMENTE'); window.location.href = 'perfil-admin.html';">
                     <div class="profile-details">
                         
                         <div class="info-field">
                             <span class="field-label">Nombre completo</span>
-                            <input type="text" class="field-value" value="María González" name="nombre">
+                            <input type="text" id="edit-nombre" class="field-value" value="María González" name="nombre">
                         </div>
                         
                         <div class="info-field">
                             <span class="field-label">Correo electrónico</span>
-                            <input type="email" class="field-value" value="maria.gonzalez@unilibre.edu.co" name="correo">
+                            <input type="email" id="edit-correo" class="field-value" value="maria.gonzalez@unilibre.edu.co" name="correo">
                         </div>
                         
                         <div class="info-field">
                             <span class="field-label">Teléfono</span>
-                            <input type="text" class="field-value" value="+34 612 345 678" name="telefono">
+                            <input type="text" id="edit-telefono" class="field-value" value="+34 612 345 678" name="telefono">
                         </div>
 
                         <div class="info-field">
                             <span class="field-label">Biografía</span>
-                            <textarea class="field-value" rows="4" name="biografia">Estudiante de ingeniería en sistemas.</textarea>
+                            <textarea id="edit-biografia" class="field-value" rows="4" name="biografia">Estudiante de ingeniería en sistemas.</textarea>
                         </div>
-
                     </div>
 
                     <div class="password-container">
                         <button type="submit" class="field-value">Guardar cambios</button>
-                        <a href="perfil.html" class="btn-secondary">Cancelar</a>
+                        <a href="perfil_admin.html" class="btn-secondary">Cancelar</a>
                     </div>
-
                 </form>
             </div>
-
         </section>
     </main>
 
