@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recuperar contraseña</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family: Arial;
+    }
+
+    body{
+        background:#ffffff;
+    }
+
+    .barra-superior{
+        width:100%;
+        height:100px;
+        background:red;
+        position:fixed;
+        top:0;
+        left:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:0 20px;
+    }
+
+    .logo{
+        width:90px;
+        height:90px;
+        object-fit:cover;
+    }
+
+    .barra-superior h1{
+        color:white;
+        font-size:40px;
+        font-weight:bold;
+        letter-spacing:3px;
+    }
+
+    .contenedor{
+        width:350px;
+        background:white;
+        padding:40px;
+        margin:140px auto;
+        border-radius:20px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        text-align:center;
+    }
+
+    input{
+        width:100%;
+        padding:12px;
+        margin:10px 0;
+        border:1px solid #ccc;
+        border-radius:10px;
+    }
+
+    button{
+        width:100%;
+        padding:12px;
+        background:red;
+        color:white;
+        border:none;
+        cursor:pointer;
+        border-radius:10px;
+    }
+
+    button:hover{
+        background:darkred;
+    }
+
+    .mensaje{
+        margin-top:10px;
+        font-weight:bold;
+    }
+
+    .volver{
+        margin-top:15px;
+        color:red;
+        cursor:pointer;
+        font-size:14px;
+    }
+
+    .volver:hover{
+        text-decoration:underline;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="barra-superior">
+    <img src="logo.webp" class="logo">
+    <h1>LIBRE CONECT</h1>
+</div>
+
+<div class="contenedor">
+
+    <h2>Recuperar contraseña</h2>
+
+    <input type="email" id="correo" placeholder="Ingresa tu correo">
+
+    <button onclick="recuperar()">Enviar enlace</button>
+
+    <p class="volver" onclick="volver()">
+        Volver al inicio de sesión
+    </p>
+
+    <div class="mensaje" id="mensaje"></div>
+
+</div>
+
+<script>
+
+function recuperar(){
+    let correo = document.getElementById("correo").value;
+    let msg = document.getElementById("mensaje");
+
+    if(correo === ""){
+        msg.innerHTML = "Escribe un correo válido";
+        msg.style.color = "red";
+    } else {
+        msg.innerHTML = "Se envió un enlace de recuperación a: " + correo;
+        msg.style.color = "green";
+    }
+}
+
+function volver(){
+    window.location.href = "inicio.html";
+}
+
+</script>
+
+</body>
+</html>
