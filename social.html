@@ -4,6 +4,27 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/social.css">
     <title>LIBRE CONECT - Red Social</title>
+
+    <style>
+
+        .filter-btn.active{
+            background-color: #0b57d0;
+            color: white;
+        }
+
+        .post{
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .post.active-post{
+            display: block;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -47,38 +68,347 @@
 
         <!-- Filtros -->
         <div class="filters">
-            <button class="filter-btn active">Recientes</button>
-            <button class="filter-btn">Populares</button>
-            <button class="filter-btn">Siguiendo</button>
+
+            <button class="filter-btn active" onclick="mostrarSeccion('recientes', this)">
+                Recientes
+            </button>
+            
+            <button class="filter-btn" onclick="mostrarSeccion('populares', this)">
+                Populares
+            </button>
+
+            <button class="filter-btn" onclick="mostrarSeccion('siguiendo', this)">
+                Siguiendo
+            </button>
+
         </div>
 
         <!-- Feed -->
         <section id="main-feed" class="feed">
 
-            <article class="post">
+            <!-- RECIENTES -->
+            <article id="recientes" class="post active-post">
 
                 <div class="post-header">
 
                     <div class="avatar user-am">AM</div>
 
                     <div>
-                        <strong>Ana Martínez</strong>
-                        <p>Estudiante • Hace 2 horas</p>
+                        <strong>Camilo Guzman</strong>
+                        <p>Hace 10 minutos</p>
+                    </div>
+
+                </div>
+
+                <p>Nuevo evento universitario esta semana.</p>
+                  <img src="https://www.unilibre.edu.co/wp-content/uploads/2026/05/EL-MUNDIAL-DE-LAS-APUESTAS-MAYO-22-DE-2026-1024x683.webp" alt="Post">
+<div class="post-actions">
+
+    <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+
+</div>
+            </article>
+             <article id="recientes" class="post active-post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">AM</div>
+
+                    <div>
+                        <strong>Andrea Torres</strong>
+                        <p>Hace 15 minutos</p>
+                    </div>
+
+                </div>
+
+                <p>Si vieron los cambios que estan haciendo en la universidad?, estan buenisimos.</p>
+                <div class="post-actions">
+
+    <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+
+</div>
+            </article>
+               <article id="recientes" class="post active-post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">AM</div>
+
+                    <div>
+                        <strong>Manuel Rodriguez</strong>
+                        <p>Hace 5 minutos</p>
+                    </div>
+
+                </div>
+
+                <p>Me encanto la semana unilibrista, muy bonita.</p>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhtHpIhwQnDenAGmGfJ2-i4E_e-S3XUwb7gQ&s" alt="Post">
+                   
+                <div class="post-actions">
+
+    <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+
+</div>
+            </article>
+            <article id="recientes" class="post active-post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">AM</div>
+
+                    <div>
+                        <strong>Santiago Lopez</strong>
+                        <p>Hace 3 minutos</p>
+                    </div>
+
+                </div>
+
+                <p>Me pareceria super espectacular si se hacen torneos interuniversitarios de manera mas seguida.</p>
+                <div class="post-actions">
+
+    <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+
+</div>
+            </article>
+
+            <!-- POPULARES -->
+            <article id="populares" class="post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">AM</div>
+
+                    <div>
+                        <strong>Ana Alarcon</strong>
+                        <p>Hace 2 horas</p>
                     </div>
 
                 </div>
 
                 <p>¡Excelente seminario sobre IA! Muy recomendado.</p>
 
-                <img src="https://placehold.co/481x256" alt="Post">
+                <img src="https://www.unilibre.edu.co/wp-content/uploads/2025/02/Seminario-Marketing-Inteligente.webp" alt="Post">
 
             </article>
+            <article id="populares" class="post active-post">
 
+                <div class="post-header">
+
+                    <div class="avatar user-am">AM</div>
+
+                    <div>
+                        <strong>Matias Moreno</strong>
+                        <p>Hace 4 dias</p>
+                    </div>
+
+                </div>
+
+                <p>Chicos no creen que este corte está muy pesado?.</p>
+                <div class="post-actions">
+
+    <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+
+</div>
+            </article>
+            <article id="populares" class="post active-post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">AM</div>
+
+                    <div>
+                        <strong>Andrea Torres</strong>
+                        <p>Hace 15 horas</p>
+                    </div>
+
+                </div>
+
+                <p>Los invitamos al nuevo evento internacional.</p>
+                <img src="https://www.unilibre.edu.co/wp-content/uploads/2025/09/evento-socorro-2025-1024x831.jpg" alt="Post">
+
+                <div class="post-actions">
+
+    <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+
+</div>
+            </article>
+             <article id="populares" class="post active-post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">AM</div>
+
+                    <div>
+                        <strong>ernesto velasquez</strong>
+                        <p>Hace 4 horas</p>
+                    </div>
+
+                </div>
+
+                <p>De casualidad alguien sabe de Cálculo?, nesesito ayudaaaa😭😭😭 .</p>
+                <div class="post-actions">
+
+    <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+
+</div>
+            </article>
+
+            <!-- SIGUIENDO -->
+            <article id="siguiendo" class="post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">CR</div>
+
+                    <div>
+                        <strong>Carlos Ruiz</strong>
+                        <p>Hace 1 hora</p>
+                    </div>
+
+                </div>
+
+                <p>Ya terminé el proyecto de programación 😎</p>
+
+            </article>
+<article id="siguiendo" class="post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">CR</div>
+
+                    <div>
+                        <strong>Thomas Duran</strong>
+                        <p>Hace 3 hora</p>
+                    </div>
+
+                </div>
+
+                <p>Estoy contento porque pase el parcial de diseño.</p>
+ <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+            </article>
+            <article id="siguiendo" class="post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">CR</div>
+
+                    <div>
+                        <strong>juan vargas</strong>
+                        <p>Hace 7 horas</p>
+                    </div>
+
+                </div>
+
+                <p>Impresionante ver el juego de la final de futbol 8 de la uiversidad</p>
+ <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+            </article>
+            <article id="siguiendo" class="post">
+
+                <div class="post-header">
+
+                    <div class="avatar user-am">CR</div>
+
+                    <div>
+                        <strong>sebastian gutierrez</strong>
+                        <p>Hace 4 horas</p>
+                    </div>
+
+                </div>
+
+                <p>invitados todos al evento de derecho, no falten.</p>
+                <img src="https://www.unilibre.edu.co/wp-content/uploads/2026/05/Congreso-internacional-de-Derecho-Full.png" alt="Post">
+ <button onclick="darLike(this)">
+        ❤️ Like <span>0</span>
+    </button>
+
+    <button onclick="repostear(this)">
+        🔁 Repost <span>0</span>
+    </button>
+            </article>
         </section>
 
     </main>
 
-    <script src="social.js"></script>
+    <script>
+
+        function mostrarSeccion(id, boton){
+
+            // Ocultar todos los posts
+            let posts = document.querySelectorAll(".post");
+
+            posts.forEach(post => {
+                post.classList.remove("active-post");
+            });
+
+            // Mostrar el seleccionado
+            document.getElementById(id).classList.add("active-post");
+
+            // Quitar active de botones
+            let botones = document.querySelectorAll(".filter-btn");
+
+            botones.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            // Activar botón actual
+            boton.classList.add("active");
+        }
+
+    </script>
 
 </body>
 </html>
