@@ -69,17 +69,17 @@
         <!-- Filtros -->
         <div class="filters">
 
-            <button class="filter-btn active" onclick="mostrarSeccion('recientes', this)">
-                Recientes
-            </button>
-            
-            <button class="filter-btn" onclick="mostrarSeccion('populares', this)">
-                Populares
-            </button>
+<button class="filter-btn active" onclick="mostrarSeccion('recientes', this)">
+    Recientes
+</button>
 
-            <button class="filter-btn" onclick="mostrarSeccion('siguiendo', this)">
-                Siguiendo
-            </button>
+<button class="filter-btn" onclick="mostrarSeccion('populares', this)">
+    Populares
+</button>
+
+<button class="filter-btn" onclick="mostrarSeccion('siguiendo', this)">
+    Siguiendo
+</button>
 
         </div>
 
@@ -87,7 +87,7 @@
         <section id="main-feed" class="feed">
 
             <!-- RECIENTES -->
-            <article id="recientes" class="post active-post">
+            <article class="post recientes">
 
                 <div class="post-header">
 
@@ -114,7 +114,7 @@
 
 </div>
             </article>
-             <article id="recientes" class="post active-post">
+           <article class="post recientes">
 
                 <div class="post-header">
 
@@ -140,7 +140,7 @@
 
 </div>
             </article>
-               <article id="recientes" class="post active-post">
+               <article class="post recientes">
 
                 <div class="post-header">
 
@@ -168,7 +168,7 @@
 
 </div>
             </article>
-            <article id="recientes" class="post active-post">
+            <article class="post recientes">
 
                 <div class="post-header">
 
@@ -196,7 +196,7 @@
             </article>
 
             <!-- POPULARES -->
-            <article id="populares" class="post">
+            <article class="post populares">
 
                 <div class="post-header">
 
@@ -214,7 +214,7 @@
                 <img src="https://www.unilibre.edu.co/wp-content/uploads/2025/02/Seminario-Marketing-Inteligente.webp" alt="Post">
 
             </article>
-            <article id="populares" class="post active-post">
+           <article class="post populares">
 
                 <div class="post-header">
 
@@ -240,7 +240,7 @@
 
 </div>
             </article>
-            <article id="populares" class="post active-post">
+            <article class="post populares">
 
                 <div class="post-header">
 
@@ -268,7 +268,7 @@
 
 </div>
             </article>
-             <article id="populares" class="post active-post">
+            <article class="post populares">
 
                 <div class="post-header">
 
@@ -296,7 +296,7 @@
             </article>
 
             <!-- SIGUIENDO -->
-            <article id="siguiendo" class="post">
+            <article class="post siguiendo">
 
                 <div class="post-header">
 
@@ -312,7 +312,7 @@
                 <p>Ya terminé el proyecto de programación 😎</p>
 
             </article>
-<article id="siguiendo" class="post">
+             <article class="post siguiendo">
 
                 <div class="post-header">
 
@@ -334,7 +334,7 @@
         🔁 Repost <span>0</span>
     </button>
             </article>
-            <article id="siguiendo" class="post">
+            <article class="post siguiendo">
 
                 <div class="post-header">
 
@@ -356,7 +356,7 @@
         🔁 Repost <span>0</span>
     </button>
             </article>
-            <article id="siguiendo" class="post">
+            <article class="post siguiendo">
 
                 <div class="post-header">
 
@@ -385,30 +385,56 @@
 
     <script>
 
-        function mostrarSeccion(id, boton){
+function mostrarSeccion(tipo, boton){
 
-            // Ocultar todos los posts
-            let posts = document.querySelectorAll(".post");
+    // Oculta todos los posts
+    let posts = document.querySelectorAll(".post");
 
-            posts.forEach(post => {
-                post.classList.remove("active-post");
-            });
+    posts.forEach(post => {
+        post.style.display = "none";
+    });
 
-            // Mostrar el seleccionado
-            document.getElementById(id).classList.add("active-post");
+    // Mostrar los posts de la categoría
+    let categoria = document.querySelectorAll("." + tipo);
 
-            // Quitar active de botones
-            let botones = document.querySelectorAll(".filter-btn");
+    categoria.forEach(post => {
+        post.style.display = "block";
+    });
 
-            botones.forEach(btn => {
-                btn.classList.remove("active");
-            });
+    // Quitar active de botones
+    let botones = document.querySelectorAll(".filter-btn");
 
-            // Activar botón actual
-            boton.classList.add("active");
-        }
+    botones.forEach(btn => {
+        btn.classList.remove("active");
+    });
 
-    </script>
+    // Activar botón actual
+    boton.classList.add("active");
+}
+
+
+// LIKE
+function darLike(boton){
+
+    let contador = boton.querySelector("span");
+
+    let numero = parseInt(contador.textContent);
+
+    contador.textContent = numero + 1;
+}
+
+
+// REPOST
+function repostear(boton){
+
+    let contador = boton.querySelector("span");
+
+    let numero = parseInt(contador.textContent);
+
+    contador.textContent = numero + 1;
+}
+
+</script>
 
 </body>
 </html>
